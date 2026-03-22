@@ -1,103 +1,53 @@
-# enterprise-sales-copilot
-AI-powered sales agent built on Google Vertex AI Studio with RAG, Grounding and MEDDIC framework
-# 🤖 Enterprise Sales Co-Pilot
-> An AI-powered sales agent built on Google Vertex AI Studio using 
-> Gemini 1.5 Pro, RAG, Google Search Grounding, and the MEDDIC framework.
+# Vertex AI Studio Frontend App with Node.js Backend
 
----
+This repository contains a frontend and a Node.js backend, designed to run together.
+The backend acts as a proxy, handling Google Cloud API calls.
 
-## 🎯 Project Overview
-A multi-capability conversational AI agent that helps B2B enterprise 
-sales reps close deals faster — built entirely without writing code, 
-using Google Vertex AI Studio.
+This project is intended for demonstration and prototyping purposes only.
+It is not intended for use in a production environment.
 
----
+## Prerequisites
 
-## ✨ Key Capabilities
+To run this application locally, you need:
 
-### 1. 🏆 MEDDIC Deal Qualifier
-- Sales rep describes a deal in natural language
-- Agent maps it to the MEDDIC framework
-- Asks smart follow-up questions for missing info
-- Outputs Deal Score (0–100) + Forecast Category
-  - Commit / Upside / Pipeline / At Risk
+*   **[Google Cloud SDK / gcloud CLI](https://cloud.google.com/sdk/docs/install)**: Follow the instructions to install the SDK.
 
-### 2. ⚔️ Competitive Battle Card
-- Rep mentions a competitor (e.g. HubSpot, Salesforce)
-- Agent fetches real-time web data via Google Search Grounding
-- Generates objection handlers + recommended talk tracks
-- Eliminates hallucination using live grounded data
+*   **gcloud Initialization**:
+    *   Initialize the gcloud CLI:
+        ```bash
+        gcloud init
+        ```
+    *   Authenticate for Application Default Credentials (needed to call Google Cloud APIs):
+        ```bash
+        gcloud auth application-default login
+        ```
 
-### 3. 📚 Sales Playbook Q&A (RAG)
-- Agent answers questions using uploaded company documents
-- Sources: Product overview, case studies, objection handling guide
-- Built on Vertex AI Search with PDF ingestion and vector indexing
-- Answers are grounded in actual documents — not guesswork
+*   **Node.js and npm**: Ensure you have Node.js and its package manager, `npm`, installed on your machine.
 
----
+## Project Structure
 
-## 🛠️ Tech Stack
+The project is organized into two main directories:
 
-| Technology | Usage |
-|---|---|
-| Google Vertex AI Studio | Agent building & deployment |
-| Gemini 1.5 Pro | Foundation language model |
-| Vertex AI Search | RAG data store & PDF indexing |
-| Google Search Grounding | Real-time competitive intelligence |
-| React + TypeScript | Auto-generated frontend UI |
-| Google Cloud Storage | Document storage |
+*   `frontend/`: Contains the Frontend application code.
+*   `backend/`: Contains the Node.js/Express server code to proxy Google Cloud API calls.
 
----
+## Backend Environment Variables
 
-## 🏗️ Architecture
-```
-User (Sales Rep)
-      │
-      ▼
- [Co-Pilot Agent — Gemini 1.5 Pro]
-      │
-      ├──► MEDDIC Qualifier     → Prompt reasoning & scoring
-      │
-      ├──► Competitive Intel    → Google Search Grounding (live web)
-      │
-      └──► Playbook Q&A         → RAG via Vertex AI Search (PDFs)
-```
+The `backend/.env.local` file is automatically generated when you download this application.
+It contains essential Google Cloud environment variables pre-configured based on your project settings at the time of download.
 
----
+The variables set in `backend/.env.local` are:
+*   `API_BACKEND_PORT`: The port the backend API server listens on (e.g., `5000`).
+*   `API_PAYLOAD_MAX_SIZE`: The maximum size of the request payload accepted by the backend server (e.g., `5mb`).
+*   `GOOGLE_CLOUD_LOCATION`: The Google Cloud region associated with your project.
+*   `GOOGLE_CLOUD_PROJECT`: Your Google Cloud Project ID.
 
-## 📄 Knowledge Base Documents
-- `product-overview.pdf` — Product features, pricing, ICP
-- `casestudy-manufacturing.pdf` — Tata Motors win story
-- `objection-handling.pdf` — 5 objections with responses
+**Note:** These variables are automatically populated during the download process.
+You can modify the values in `backend/.env.local` if you need to change them.
 
----
+## Installation and Running the App
 
-## 💡 Key Learnings
-- Designing multi-tool AI agents using system prompt orchestration
-- Implementing RAG with Vertex AI Search and unstructured PDF ingestion
-- Using Google Search Grounding to eliminate hallucination on live data
-- Prompt engineering for structured output and conditional reasoning
-- End-to-end AI application deployment on Google Cloud
+To install dependencies and run your Google Cloud Vertex AI Studio App locally, execute the following command:
 
----
-
-## 👤 Author
-**Keshav Maheshwari**  
-[GitHub](https://github.com/KeshavMaheshwari7)
-```
-
-Click **"Commit changes"** → **"Commit directly to main"** → **"Commit changes"**
-
----
-
-## Step 3 — Upload Your PDF Files
-
-1. In the repo click **"Add file"** → **"Upload files"**
-2. Upload the 3 PDFs
-3. Click **"Commit changes"**
-
----
-
-Once done your project will live at:
-```
-github.com/KeshavMaheshwari7/enterprise-sales-copilot
+```bash
+npm install && npm run dev
